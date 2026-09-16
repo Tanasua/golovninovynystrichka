@@ -15,9 +15,9 @@ def _require(name: str) -> str:
 TELEGRAM_BOT_TOKEN = _require("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = _require("TELEGRAM_CHAT_ID")
 OPENAI_API_KEY = _require("OPENAI_API_KEY")
-OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-5-mini")
-CHECK_INTERVAL_MINUTES = int(os.environ.get("CHECK_INTERVAL_MINUTES", "30"))
-STATE_FILE = os.environ.get("STATE_FILE", "state.json")
+OPENAI_MODEL = os.environ.get("OPENAI_MODEL") or "gpt-5-mini"
+CHECK_INTERVAL_MINUTES = int(os.environ.get("CHECK_INTERVAL_MINUTES") or "30")
+STATE_FILE = os.environ.get("STATE_FILE") or "state.json"
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
