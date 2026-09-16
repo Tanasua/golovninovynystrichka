@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 import time
 
-from . import comparator, config, notifier, state
+from . import comparator, config, notifier, schedule_window, state
 from .sources import glavred, ukrnet
 
 logging.basicConfig(
@@ -14,6 +14,14 @@ log = logging.getLogger("news-bot")
 
 
 def run_once() -> None:
+    if not schedule_window.is_active_now():
+        log.info(
+            "Поза робочими годинами бота (будні 6:00–1:00, вихідні 7:00–23:00 "
+            "за %s) — пропускаю перевірку",
+            config.SCHEDULE_TIMEZONE,
+        )
+        return
+
     log.info("Отримую топ-3 новини з ukr.net...")
     top3 = ukrnet.fetch_top3()
     for item in top3:

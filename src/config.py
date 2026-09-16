@@ -18,6 +18,7 @@ OPENAI_API_KEY = _require("OPENAI_API_KEY")
 OPENAI_MODEL = os.environ.get("OPENAI_MODEL") or "gpt-5-mini"
 CHECK_INTERVAL_MINUTES = int(os.environ.get("CHECK_INTERVAL_MINUTES") or "30")
 STATE_FILE = os.environ.get("STATE_FILE") or "state.json"
+SCHEDULE_TIMEZONE = os.environ.get("SCHEDULE_TIMEZONE") or "Europe/Kyiv"
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
