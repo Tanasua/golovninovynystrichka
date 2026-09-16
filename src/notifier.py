@@ -30,7 +30,7 @@ def send_uncovered_news(items: list[NewsItem]) -> None:
             "chat_id": config.TELEGRAM_CHAT_ID,
             "text": text,
             "parse_mode": "HTML",
-            "disable_web_page_preview": False,
+            "link_preview_options": {"is_disabled": True},
         },
         timeout=15,
     )
