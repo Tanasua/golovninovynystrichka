@@ -2,11 +2,30 @@
 from __future__ import annotations
 
 import html
+import random
 
 import requests
 
 from . import config
 from .sources.ukrnet import NewsItem
+
+INTRO_PHRASES = [
+    "це нам цікаво?",
+    "глянемо на це?",
+    "може, візьмемо цю тему?",
+    "новини на розгляд",
+    "це може бути в нас",
+    "на замітку редакції",
+    "варто глянути",
+    "це нам підходить?",
+    "можливо, наше",
+    "це може зацікавити",
+    "звернемо увагу?",
+    "це в тему?",
+    "свіже і, можливо, наше",
+    "це наш формат?",
+    "на оцінку редакції",
+]
 
 
 def _escape(text: str) -> str:
@@ -17,7 +36,7 @@ def send_uncovered_news(items: list[NewsItem]) -> None:
     if not items:
         return
 
-    blocks = ["нам це цікаво?"]
+    blocks = [random.choice(INTRO_PHRASES)]
     for item in items:
         link = f'<a href="{_escape(item.url)}">лінк</a>'
         blocks.append(f"{_escape(item.title)} ({link})")
