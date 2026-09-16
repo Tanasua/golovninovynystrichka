@@ -17,10 +17,11 @@ def send_uncovered_news(items: list[NewsItem]) -> None:
     if not items:
         return
 
-    lines = ["нам це цікаво?", ""]
+    blocks = ["нам це цікаво?"]
     for item in items:
-        lines.append(f'<a href="{_escape(item.url)}">{_escape(item.title)}</a>')
-    text = "\n".join(lines)
+        link = f'<a href="{_escape(item.url)}">лінк</a>'
+        blocks.append(f"{_escape(item.title)} ({link})")
+    text = "\n\n".join(blocks)
 
     url = f"https://api.telegram.org/bot{config.TELEGRAM_BOT_TOKEN}/sendMessage"
     response = requests.post(
